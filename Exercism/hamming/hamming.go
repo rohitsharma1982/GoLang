@@ -6,19 +6,18 @@ import "fmt"
 // In case the length of strands is not equal, the function will throw an error.
 func Distance(a, b string) (int, error) {
 
-	var result int = 0
-	var err error = nil
+	var result int
+	ar, br := []rune(a), []rune(b)
 
-	if len(a) != len(b) {
-		err = fmt.Errorf("given dna strands are of different lengths")
-		return result, err
+	if len(ar) != len(br) {
+		return 0, fmt.Errorf("unequal lengths: %q, %q", a, b)
 	}
 
-	for itr := range a {
-		if a[itr] != b[itr] {
+	for itr := range ar {
+		if ar[itr] != br[itr] {
 			result++
 		}
 	}
 
-	return result, err
+	return result, nil
 }
